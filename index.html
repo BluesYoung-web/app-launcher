@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>App Launcher - 调试和示例</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .header {
+      text-align: center;
+      color: white;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .demo-section {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .demo-section h2 {
+      color: #4a5568;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #2d3748;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      width: auto;
+      margin: 0;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+      color: #2d3748;
+    }
+
+    .btn-success {
+      background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+    }
+
+    .btn-danger {
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+    }
+
+    .log-container {
+      background: #1a202c;
+      color: #e2e8f0;
+      padding: 20px;
+      border-radius: 8px;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      font-size: 14px;
+      max-height: 300px;
+      overflow-y: auto;
+      margin-top: 20px;
+    }
+
+    .log-entry {
+      margin-bottom: 8px;
+      padding: 4px 0;
+    }
+
+    .log-info {
+      color: #68d391;
+    }
+
+    .log-warn {
+      color: #f6e05e;
+    }
+
+    .log-error {
+      color: #fc8181;
+    }
+
+    .device-info {
+      background: #f7fafc;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      border-left: 4px solid #667eea;
+    }
+
+    .device-info h3 {
+      color: #2d3748;
+      margin-bottom: 10px;
+    }
+
+    .device-info-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+
+    .device-info-label {
+      font-weight: 600;
+      color: #4a5568;
+    }
+
+    .device-info-value {
+      color: #2d3748;
+    }
+
+    .result-container {
+      background: #f0fff4;
+      border: 2px solid #68d391;
+      border-radius: 8px;
+      padding: 15px;
+      margin-top: 20px;
+    }
+
+    .result-container.error {
+      background: #fff5f5;
+      border-color: #fc8181;
+    }
+
+    .result-title {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .result-success {
+      color: #22543d;
+    }
+
+    .result-error {
+      color: #742a2a;
+    }
+
+    @media (max-width: 768px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        padding: 10px;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+  <script crossorigin="anonymous" src="http://192.168.41.213:6752/page-spy/index.min.js"></script>
+</head>
+
+<body>
+  <script>
+    $pageSpy = new PageSpy();
+  </script>
+  <div class="container">
+    <div class="header">
+      <h1>🚀 App Launcher</h1>
+      <p>应用唤起库调试和示例页面</p>
+    </div>
+
+    <!-- 设备信息显示 -->
+    <div class="demo-section">
+      <h2>📱 设备信息</h2>
+      <div class="device-info" id="deviceInfo">
+        <h3>检测中...</h3>
+      </div>
+    </div>
+
+    <!-- 基础配置 -->
+    <div class="demo-section">
+      <h2>⚙️ 基础配置</h2>
+      <div class="form-group">
+        <label for="scheme">唤起 Scheme:</label>
+        <input type="text" id="scheme" placeholder="myapp://open 或 https://myapp.com/open" value="com.laiyouxi.app://">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fallbackUrl">回退 URL:</label>
+          <input type="text" id="fallbackUrl" placeholder="https://example.com/download"
+            value="https://www.laiyouxi.com/landpage/app-guide/download.html">
+        </div>
+        <div class="form-group">
+          <label for="timeout">超时时间 (ms):</label>
+          <input type="number" id="timeout" value="3000" min="1000" max="10000">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="clipboardText">剪切板内容:</label>
+        <textarea id="clipboardText" placeholder="要写入剪切板的内容（可选）" rows="3">[我是落地页写入✅]</textarea>
+      </div>
+
+      <div class="form-group">
+        <div class="checkbox-group">
+          <input type="checkbox" id="debug" checked>
+          <label for="debug">启用调试模式</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- 回调函数配置 -->
+    <div class="demo-section">
+      <h2>🔄 回调函数</h2>
+      <div class="form-group">
+        <label for="onStartCode">onStart 回调:</label>
+        <textarea id="onStartCode" placeholder="console.log('开始唤起应用')" rows="2">console.log('开始唤起应用')</textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="onSuccessCode">onSuccess 回调:</label>
+        <textarea id="onSuccessCode" placeholder="console.log('应用唤起成功')" rows="2">console.log('应用唤起成功')</textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="onFailCode">onFail 回调:</label>
+        <textarea id="onFailCode" placeholder="console.error('应用唤起失败:', error)"
+          rows="2">console.error('应用唤起失败:', error)</textarea>
+      </div>
+    </div>
+
+    <!-- 操作按钮 -->
+    <div class="demo-section">
+      <h2>🎮 操作</h2>
+      <button class="btn" onclick="launchWithBuilder()">🚀 链式调用唤起</button>
+      <button class="btn btn-secondary" onclick="launchWithConstructor()">🔧 构造函数唤起</button>
+      <button class="btn btn-success" onclick="refreshDeviceInfo()">🔄 刷新设备信息</button>
+      <button class="btn btn-success" onclick="clearLogs()">🧹 清空日志</button>
+      <button class="btn btn-danger" onclick="testError()">❌ 测试错误</button>
+    </div>
+
+    <!-- 日志输出 -->
+    <div class="demo-section">
+      <h2>📝 调试日志</h2>
+      <div class="log-container" id="logContainer">
+        <div class="log-entry log-info">等待操作...</div>
+      </div>
+    </div>
+
+    <!-- 结果展示 -->
+    <div class="demo-section">
+      <h2>📊 执行结果</h2>
+      <div id="resultContainer" style="display: none;">
+        <!-- 结果将在这里显示 -->
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { AppLauncher } from './src'
+    import { DeviceDetector } from './src/utils/device'
+
+    // 全局变量
+    window.AppLauncher = AppLauncher
+    window.DeviceDetector = DeviceDetector
+    window.logs = []
+
+    // 日志函数
+    function log(message, type = 'info') {
+      const timestamp = new Date().toLocaleTimeString()
+      const logEntry = document.createElement('div')
+      logEntry.className = `log-entry log-${type}`
+      logEntry.textContent = `[${timestamp}] ${message}`
+
+      const logContainer = document.getElementById('logContainer')
+      logContainer.appendChild(logEntry)
+      logContainer.scrollTop = logContainer.scrollHeight
+
+      window.logs.push({ timestamp, message, type })
+    }
+
+    // 显示设备信息
+    function displayDeviceInfo() {
+      const deviceInfo = window.deviceInfo
+      const container = document.getElementById('deviceInfo')
+
+      container.innerHTML = `
+        <h3>设备检测结果</h3>
+        <div class="device-info-item">
+          <span class="device-info-label">设备类型:</span>
+          <span class="device-info-value">${deviceInfo.isMobile ? '移动设备' : '桌面设备'}</span>
+        </div>
+        <div class="device-info-item">
+          <span class="device-info-label">操作系统:</span>
+          <span class="device-info-value">
+            ${deviceInfo.isAndroid ? 'Android' :
+          deviceInfo.isIOS ? 'iOS' :
+            deviceInfo.isMacOS ? 'macOS' :
+              deviceInfo.isHarmonyOS ? '鸿蒙' : '其他'}
+          </span>
+        </div>
+        <div class="device-info-item">
+          <span class="device-info-label">浏览器环境:</span>
+          <span class="device-info-value">${deviceInfo.isWechat ? '微信内置浏览器' : '普通浏览器'}</span>
+        </div>
+        <div class="device-info-item">
+          <span class="device-info-label">制造商:</span>
+          <span class="device-info-value">${deviceInfo.manufacturer || '未知'}</span>
+        </div>
+        <div class="device-info-item">
+          <span class="device-info-label">设备详情:</span>
+          <span class="device-info-value">
+            ${deviceInfo.isMobile ? '📱 移动设备' : '💻 桌面设备'} | 
+            ${deviceInfo.isWechat ? '💬 微信环境' : '🌐 普通浏览器'}
+          </span>
+        </div>
+        <div class="device-info-item">
+          <span class="device-info-label">User Agent:</span>
+          <span class="device-info-value" style="font-size: 12px; word-break: break-all;">${deviceInfo.rawUA}</span>
+        </div>
+      `
+    }
+
+    // 显示结果
+    function showResult(result) {
+      const container = document.getElementById('resultContainer')
+      const isSuccess = result.success
+
+      container.innerHTML = `
+        <div class="result-container ${isSuccess ? '' : 'error'}">
+          <div class="result-title ${isSuccess ? 'result-success' : 'result-error'}">
+            ${isSuccess ? '✅ 唤起成功' : '❌ 唤起失败'}
+          </div>
+          <div class="device-info-item">
+            <span class="device-info-label">时间戳:</span>
+            <span class="device-info-value">${new Date(result.timestamp).toLocaleString()}</span>
+          </div>
+          ${result.error ? `
+            <div class="device-info-item">
+              <span class="device-info-label">错误信息:</span>
+              <span class="device-info-value">${result.error.message}</span>
+            </div>
+          ` : ''}
+          <div class="device-info-item">
+            <span class="device-info-label">设备信息:</span>
+            <span class="device-info-value">${JSON.stringify(result.deviceInfo, null, 2)}</span>
+          </div>
+        </div>
+      `
+      container.style.display = 'block'
+    }
+
+    // 链式调用唤起
+    window.launchWithBuilder = async function () {
+      try {
+        log('开始链式调用唤起...', 'info')
+
+        const scheme = document.getElementById('scheme').value
+        const fallbackUrl = document.getElementById('fallbackUrl').value
+        const timeout = parseInt(document.getElementById('timeout').value)
+        const clipboardText = getClipboardText()
+        console.log("🚀 ~ clipboardText:[builder]", clipboardText)
+        const debug = document.getElementById('debug').checked
+
+        const onStartCode = document.getElementById('onStartCode').value
+        const onSuccessCode = document.getElementById('onSuccessCode').value
+        const onFailCode = document.getElementById('onFailCode').value
+
+        // 创建回调函数
+        const onStart = onStartCode ? new Function(onStartCode) : undefined
+        const onSuccess = onSuccessCode ? new Function(onSuccessCode) : undefined
+        const onFail = onFailCode ? new Function('error', onFailCode) : undefined
+
+        log(`配置参数: scheme=${scheme}, fallbackUrl=${fallbackUrl}, timeout=${timeout}ms`, 'info')
+
+        const result = await AppLauncher.create()
+          .scheme(scheme)
+          .clipboardText(clipboardText)
+          .fallbackUrl(fallbackUrl)
+          .timeout(timeout)
+          .debug(debug)
+          .onStart(onStart)
+          .onSuccess(onSuccess)
+          .onFail(onFail)
+          .launch()
+
+        log(`唤起完成: ${result.success ? '成功' : '失败'}`, result.success ? 'info' : 'error')
+        showResult(result)
+
+      } catch (error) {
+        log(`链式调用错误: ${error.message}`, 'error')
+        showResult({ success: false, error, timestamp: Date.now(), deviceInfo: window.deviceInfo })
+      }
+    }
+
+    function getClipboardText() {
+      const el = document.getElementById('clipboardText')
+      return el.value || el.innerText
+    }
+
+    // 构造函数唤起
+    window.launchWithConstructor = async function () {
+      try {
+        log('开始构造函数唤起...', 'info')
+
+        const scheme = document.getElementById('scheme').value
+        const fallbackUrl = document.getElementById('fallbackUrl').value
+        const timeout = parseInt(document.getElementById('timeout').value)
+        const clipboardText = getClipboardText()
+        console.log("🚀 ~ clipboardText:[constructor]", clipboardText)
+        const debug = document.getElementById('debug').checked
+
+        const onStartCode = document.getElementById('onStartCode').value
+        const onSuccessCode = document.getElementById('onSuccessCode').value
+        const onFailCode = document.getElementById('onFailCode').value
+
+        // 创建回调函数
+        const onStart = onStartCode ? new Function(onStartCode) : undefined
+        const onSuccess = onSuccessCode ? new Function(onSuccessCode) : undefined
+        const onFail = onFailCode ? new Function('error', onFailCode) : undefined
+
+        const options = {
+          scheme,
+          fallbackUrl,
+          timeout,
+          clipboardText: clipboardText || undefined,
+          debug,
+          onStart,
+          onSuccess,
+          onFail
+        }
+
+        log(`配置参数: ${JSON.stringify(options, null, 2)}`, 'info')
+
+        const launcher = new AppLauncher(options)
+        const result = await launcher.launch()
+
+        log(`唤起完成: ${result.success ? '成功' : '失败'}`, result.success ? 'info' : 'error')
+        showResult(result)
+
+      } catch (error) {
+        log(`构造函数错误: ${error.message}`, 'error')
+        showResult({ success: false, error, timestamp: Date.now(), deviceInfo: window.deviceInfo })
+      }
+    }
+
+    // 清空日志
+    window.clearLogs = function () {
+      document.getElementById('logContainer').innerHTML = '<div class="log-entry log-info">日志已清空</div>'
+      document.getElementById('resultContainer').style.display = 'none'
+      window.logs = []
+    }
+
+    // 刷新设备信息
+    window.refreshDeviceInfo = function () {
+      log('重新检测设备信息...', 'info')
+
+      // 使用真实的设备检测
+      window.deviceInfo = DeviceDetector.detect()
+      log(`设备检测结果: ${JSON.stringify(window.deviceInfo, null, 2)}`, 'info')
+
+      displayDeviceInfo()
+      log('设备信息已刷新', 'info')
+    }
+
+    // 测试错误
+    window.testError = function () {
+      log('测试错误处理...', 'warn')
+      showResult({
+        success: false,
+        error: new Error('这是一个测试错误'),
+        timestamp: Date.now(),
+        deviceInfo: window.deviceInfo
+      })
+    }
+
+    // 初始化
+    document.addEventListener('DOMContentLoaded', function () {
+      log('页面加载完成，初始化设备检测...', 'info')
+
+      // 使用真实的设备检测
+      window.deviceInfo = DeviceDetector.detect()
+      log(`设备检测结果: ${JSON.stringify(window.deviceInfo, null, 2)}`, 'info')
+
+      displayDeviceInfo()
+      log('设备检测完成', 'info')
+    })
+  </script>
+</body>
+
+</html>
