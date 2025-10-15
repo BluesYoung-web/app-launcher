@@ -14,14 +14,15 @@
   },
   "keywords": [
     "call-app",
+    "app-luancher",
     "browser",
     "mobile",
     "deeplink",
     "url-scheme",
     "universal-links"
   ],
-  "main": "dist/call-app.es.js",
-  "module": "dist/call-app.es.js",
+  "main": "dist/index.es.js",
+  "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"

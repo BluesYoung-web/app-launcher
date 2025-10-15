@@ -2,7 +2,7 @@ import { resolve } from 'node:path'
 /*
  * @Author: zhangyang
  * @Date: 2025-09-19 10:44:53
- * @LastEditTime: 2025-09-19 14:47:13
+ * @LastEditTime: 2025-10-15 16:16:41
  * @Description:
  */
 import { defineConfig } from 'vite'
@@ -17,7 +17,7 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'AppLancher',
       formats: ['es', 'umd'],
-      fileName: format => `app-lancher.${format}.js`,
+      fileName: format => `index.${format}.js`,
     },
     rollupOptions: {
       external: [],
