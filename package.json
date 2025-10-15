@@ -1,6 +1,6 @@
 {
   "name": "app-luancher",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "一个用于在浏览器中唤起移动端App的NPM包，支持多种平台和智能策略",
   "author": "BluesYoung-web",
   "license": "MIT",
