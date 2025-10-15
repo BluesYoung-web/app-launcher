@@ -25,7 +25,8 @@
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "init.mjs"
   ],
   "scripts": {
     "build": "vite build",
@@ -36,7 +37,7 @@
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "prepublishOnly": "pnpm run build",
-    "postinstall": "simple-git-hooks"
+    "postinstall": "node ./init.mjs"
   },
   "dependencies": {
     "defu": "^6.1.4"

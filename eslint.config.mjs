@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2025-09-19 10:48:53
- * @LastEditTime: 2025-09-19 16:43:51
+ * @LastEditTime: 2025-10-15 16:26:46
  * @Description:
  */
 import antfu from '@antfu/eslint-config'
@@ -25,5 +25,5 @@ export default antfu({
     },
   },
 
-  ignores: ['README.md'],
+  ignores: ['README.md', 'init.mjs'],
 })
