@@ -21,11 +21,11 @@
 ## 📦 安装
 
 ```bash
-npm install app-launcher
+npm install @bluesyoung/app-launcher
 # 或
-yarn add app-launcher
+yarn add @bluesyoung/app-launcher
 # 或
-pnpm add app-launcher
+pnpm add @bluesyoung/app-launcher
 ```
 
 ## 🚀 快速开始
@@ -33,7 +33,7 @@ pnpm add app-launcher
 ### 基础用法
 
 ```typescript
-import { AppLauncher } from 'app-launcher'
+import { AppLauncher } from '@bluesyoung/app-launcher'
 
 // 传统方式
 const launcher = new AppLauncher({
@@ -49,7 +49,7 @@ await launcher.launch()
 ### 链式调用（推荐）
 
 ```typescript
-import { AppLauncher } from 'app-launcher'
+import { AppLauncher } from '@bluesyoung/app-launcher'
 
 // 链式调用方式
 const result = await AppLauncher.create()
@@ -180,7 +180,7 @@ const result = await AppLauncher.create()
 ### 自定义插件
 
 ```typescript
-import { AppLaunchPlugin } from 'app-launcher'
+import { AppLaunchPlugin } from '@bluesyoung/app-launcher'
 
 class CustomPlugin implements AppLaunchPlugin {
   name = 'custom'
