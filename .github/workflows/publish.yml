@@ -6,7 +6,7 @@ on:
       - 'v*'
 
 permissions:
-  id-token: write
+  id-token: write # 授权生成 Provenance 证明
   contents: read
 
 jobs:
@@ -26,6 +26,7 @@ jobs:
         with:
           node-version: '20'
           cache: pnpm
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
@@ -54,3 +55,5 @@ jobs:
 
       - name: Publish to NPM
         run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # 使用 GitHub Secrets 中的 Token
