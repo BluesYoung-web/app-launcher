@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.1.5
+
+[compare changes](https://github.com/BluesYoung-web/app-launcher/compare/v1.1.4...v1.1.5)
+
+### 🩹 Fixes
+
+- 🩹 try fix publish failed ([91e11cb](https://github.com/BluesYoung-web/app-launcher/commit/91e11cb))
+
+### ❤️ Contributors
+
+- BluesYoung-web <bluesyoung_web@163.com>
+
 ## v1.1.4
 
 [compare changes](https://github.com/BluesYoung-web/app-launcher/compare/v1.1.3...v1.1.4)
