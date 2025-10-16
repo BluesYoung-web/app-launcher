@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.1.6
+
+[compare changes](https://github.com/BluesYoung-web/app-launcher/compare/v1.1.5...v1.1.6)
+
+### 🩹 Fixes
+
+- 🩹 add npm token, try fix auto publish ([bf9371a](https://github.com/BluesYoung-web/app-launcher/commit/bf9371a))
+
+### ❤️ Contributors
+
+- BluesYoung-web <bluesyoung_web@163.com>
+
 ## v1.1.5
 
 [compare changes](https://github.com/BluesYoung-web/app-launcher/compare/v1.1.4...v1.1.5)
