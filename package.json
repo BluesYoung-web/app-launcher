@@ -1,20 +1,20 @@
 {
-  "name": "app-luancher",
+  "name": "app-launcher",
   "version": "1.0.2",
   "description": "一个用于在浏览器中唤起移动端App的NPM包，支持多种平台和智能策略",
   "author": "BluesYoung-web",
   "license": "MIT",
-  "homepage": "https://github.com/BluesYoung-web/app-luancher#readme",
+  "homepage": "https://github.com/BluesYoung-web/app-launcher#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BluesYoung-web/app-luancher.git"
+    "url": "git+https://github.com/BluesYoung-web/app-launcher.git"
   },
   "bugs": {
-    "url": "https://github.com/BluesYoung-web/app-luancher/issues"
+    "url": "https://github.com/BluesYoung-web/app-launcher/issues"
   },
   "keywords": [
     "call-app",
-    "app-luancher",
+    "app-launcher",
     "browser",
     "mobile",
     "deeplink",

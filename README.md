@@ -21,11 +21,11 @@
 ## 📦 安装
 
 ```bash
-npm install app-luancher
+npm install app-launcher
 # 或
-yarn add app-luancher
+yarn add app-launcher
 # 或
-pnpm add app-luancher
+pnpm add app-launcher
 ```
 
 ## 🚀 快速开始
@@ -33,7 +33,7 @@ pnpm add app-luancher
 ### 基础用法
 
 ```typescript
-import { AppLauncher } from 'app-luancher'
+import { AppLauncher } from 'app-launcher'
 
 // 传统方式
 const launcher = new AppLauncher({
@@ -49,7 +49,7 @@ await launcher.launch()
 ### 链式调用（推荐）
 
 ```typescript
-import { AppLauncher } from 'app-luancher'
+import { AppLauncher } from 'app-launcher'
 
 // 链式调用方式
 const result = await AppLauncher.create()
@@ -180,7 +180,7 @@ const result = await AppLauncher.create()
 ### 自定义插件
 
 ```typescript
-import { AppLaunchPlugin } from 'app-luancher'
+import { AppLaunchPlugin } from 'app-launcher'
 
 class CustomPlugin implements AppLaunchPlugin {
   name = 'custom'
