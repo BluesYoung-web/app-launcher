@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.1.7
+
+[compare changes](https://github.com/BluesYoung-web/app-launcher/compare/v1.1.6...v1.1.7)
+
+### 🏡 Chore
+
+- 🏡 增加命名空间，绕过 npm 包名冲突 ([fe59d4a](https://github.com/BluesYoung-web/app-launcher/commit/fe59d4a))
+
+### ❤️ Contributors
+
+- BluesYoung-web <bluesyoung_web@163.com>
+
 ## v1.1.6
 
 [compare changes](https://github.com/BluesYoung-web/app-launcher/compare/v1.1.5...v1.1.6)
