@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2025-09-19 11:10:36
- * @LastEditTime: 2025-09-19 16:22:54
+ * @LastEditTime: 2025-10-16 15:39:38
  * @Description:
  */
 import { ClipboardUtils } from '@/utils/clipboard'
@@ -609,13 +609,12 @@ export class DefaultPlugin implements AppLaunchPlugin {
    * @param deviceInfo 设备信息
    */
   async launch(options: LaunchOptions, deviceInfo: DeviceInfo): Promise<boolean> {
-    const { debug, clipboardText, onStart, onSuccess, onFail } = options
+    const { debug, clipboardText } = options
 
     const logger = createLogger('DefaultPlugin', { enabled: debug })
 
     logger.debug('launch', { options, deviceInfo })
 
-    onStart?.()
     const res = await new Promise((resolve) => {
       if (clipboardText) {
         logger.debug('剪切板存在内容，准备写入', clipboardText)
@@ -633,11 +632,9 @@ export class DefaultPlugin implements AppLaunchPlugin {
     })
 
     if (res) {
-      onSuccess?.()
       return true
     }
     else {
-      onFail?.(new Error('唤起失败'))
       return false
     }
   }
