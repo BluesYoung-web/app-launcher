@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2025-09-19 11:09:20
- * @LastEditTime: 2025-09-19 14:27:38
+ * @LastEditTime: 2025-10-16 16:21:01
  * @Description:
  */
 export class DeviceDetector {
@@ -15,7 +15,6 @@ export class DeviceDetector {
       isMacOS: this.isMacOS(ua),
       isHarmonyOS: this.isHarmonyOS(ua),
       isWechat: this.isWechat(ua),
-      manufacturer: this.getManufacturer(ua),
 
       rawUA: ua,
     }
@@ -43,28 +42,5 @@ export class DeviceDetector {
 
   private static isWechat(ua: string): boolean {
     return /MicroMessenger/i.test(ua)
-  }
-
-  private static getManufacturer(ua: string): string {
-    const lowerUa = ua.toLowerCase()
-
-    const manufacturers = [
-      { pattern: /xiaomi/, name: 'Xiaomi' },
-      { pattern: /huawei|honor/, name: 'Huawei' },
-      { pattern: /oppo/, name: 'OPPO' },
-      { pattern: /vivo/, name: 'vivo' },
-      { pattern: /samsung/, name: 'Samsung' },
-      { pattern: /oneplus/, name: 'OnePlus' },
-      { pattern: /google/, name: 'Google' },
-      { pattern: /apple/, name: 'Apple' },
-    ]
-
-    for (const { pattern, name } of manufacturers) {
-      if (pattern.test(lowerUa)) {
-        return name
-      }
-    }
-
-    return 'unknown'
   }
 }

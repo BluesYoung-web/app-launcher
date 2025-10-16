@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2025-09-19 10:56:45
- * @LastEditTime: 2025-09-19 15:54:37
+ * @LastEditTime: 2025-10-16 16:21:13
  * @Description:
  */
 /**
@@ -143,10 +143,6 @@ interface DeviceInfo {
    * 是否为微信
    */
   isWechat: boolean
-  /**
-   * 制造商
-   */
-  manufacturer?: string
   /**
    * 原始UA
    */

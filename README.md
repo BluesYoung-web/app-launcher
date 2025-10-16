@@ -219,7 +219,6 @@ interface DeviceInfo {
   isMacOS: boolean // 是否为 macOS
   isHarmonyOS: boolean // 是否为鸿蒙
   isWechat: boolean // 是否为微信
-  manufacturer?: string // 制造商
   rawUA: string // 原始 User Agent
 }
 ```
