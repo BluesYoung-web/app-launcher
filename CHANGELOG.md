@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v1.1.2
+
+[compare changes](https://github.com/BluesYoung-web/app-launcher/compare/v1.1.1...v1.1.2)
+
+### 🩹 Fixes
+
+- 🩹 try fix github actions ([fe73514](https://github.com/BluesYoung-web/app-launcher/commit/fe73514))
+
+### ✅ Tests
+
+- ✅ add tests & remove manufacturer ([939279e](https://github.com/BluesYoung-web/app-launcher/commit/939279e))
+
+### ❤️ Contributors
+
+- BluesYoung-web <bluesyoung_web@163.com>
+
 ## v1.1.1
 
 [compare changes](https://github.com/BluesYoung-web/app-launcher/compare/v1.1.0...v1.1.1)
