@@ -53,4 +53,4 @@ jobs:
           node -p "require('./package.json').files"
 
       - name: Publish to NPM
-        run: pnpm publish --provenance --access public
+        run: npm publish --provenance --access public
