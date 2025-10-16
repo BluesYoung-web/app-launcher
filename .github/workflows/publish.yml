@@ -28,13 +28,34 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: |
+          if [ -f pnpm-lock.yaml ]; then
+            pnpm install --frozen-lockfile
+          else
+            pnpm install --no-frozen-lockfile
+          fi
 
       - name: Run tests
-        run: pnpm test
+        run: pnpm test --run
 
       - name: Build package
         run: pnpm build
+
+      - name: Verify build output
+        run: |
+          if [ ! -d "dist" ]; then
+            echo "Build failed: dist directory not found"
+            exit 1
+          fi
+          echo "Build output verified:"
+          ls -la dist/
+
+      - name: Show package info
+        run: |
+          echo "Package name: $(node -p "require('./package.json').name")"
+          echo "Package version: $(node -p "require('./package.json').version")"
+          echo "Files to be published:"
+          node -p "require('./package.json').files"
 
       - name: Publish to NPM
         run: pnpm publish --provenance --access public
