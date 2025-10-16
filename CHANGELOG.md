@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.1.4
+
+[compare changes](https://github.com/BluesYoung-web/app-launcher/compare/v1.1.3...v1.1.4)
+
+### 🩹 Fixes
+
+- 🩹 fix action test running ([bec8710](https://github.com/BluesYoung-web/app-launcher/commit/bec8710))
+
+### ❤️ Contributors
+
+- BluesYoung-web <bluesyoung_web@163.com>
+
 ## v1.1.3
 
 [compare changes](https://github.com/BluesYoung-web/app-launcher/compare/v1.1.2...v1.1.3)
