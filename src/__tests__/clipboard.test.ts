@@ -109,12 +109,13 @@ describe('clipboardUtils', () => {
   })
 
   describe('copyText', () => {
-    const mockDeviceInfo = {
+    const mockDeviceInfo: DeviceInfo = {
       isMobile: false,
       isAndroid: false,
       isIOS: false,
       isMacOS: false,
       isHarmonyOS: false,
+      isPureHarmonyOS: false,
       isWechat: false,
       rawUA: 'test-ua',
     }
