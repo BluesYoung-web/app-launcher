@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.2.0
+
+[compare changes](https://github.com/BluesYoung-web/app-launcher/compare/v1.1.7...v1.2.0)
+
+### 🩹 Fixes
+
+- 🩹 优化鸿蒙系统识别 ([0bbdef4](https://github.com/BluesYoung-web/app-launcher/commit/0bbdef4))
+
+### ❤️ Contributors
+
+- BluesYoung-web <bluesyoung_web@163.com>
+
 ## v1.1.7
 
 [compare changes](https://github.com/BluesYoung-web/app-launcher/compare/v1.1.6...v1.1.7)
