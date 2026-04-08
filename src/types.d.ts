@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2025-09-19 10:56:45
- * @LastEditTime: 2025-10-16 16:21:13
+ * @LastEditTime: 2026-04-08 09:59:05
  * @Description:
  */
 /**
@@ -139,6 +139,10 @@ interface DeviceInfo {
    * 是否为鸿蒙
    */
   isHarmonyOS: boolean
+  /**
+   * 是否为纯血鸿蒙（非安卓鸿蒙）
+   */
+  isPureHarmonyOS: boolean
   /**
    * 是否为微信
    */

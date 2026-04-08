@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2025-09-19 11:09:20
- * @LastEditTime: 2025-10-16 16:21:01
+ * @LastEditTime: 2026-04-08 10:02:36
  * @Description:
  */
 export class DeviceDetector {
@@ -14,6 +14,7 @@ export class DeviceDetector {
       isIOS: this.isIOS(ua),
       isMacOS: this.isMacOS(ua),
       isHarmonyOS: this.isHarmonyOS(ua),
+      isPureHarmonyOS: this.isPureHarmonyOS(ua),
       isWechat: this.isWechat(ua),
 
       rawUA: ua,
@@ -21,7 +22,7 @@ export class DeviceDetector {
   }
 
   private static isMobile(ua: string): boolean {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua)
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|Phone/i.test(ua)
   }
 
   private static isAndroid(ua: string): boolean {
@@ -37,7 +38,11 @@ export class DeviceDetector {
   }
 
   private static isHarmonyOS(ua: string): boolean {
-    return /HarmonyOS/i.test(ua)
+    return /HarmonyOS|OpenHarmony/i.test(ua)
+  }
+
+  private static isPureHarmonyOS(ua: string): boolean {
+    return this.isHarmonyOS(ua) && !this.isAndroid(ua)
   }
 
   private static isWechat(ua: string): boolean {

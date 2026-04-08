@@ -64,7 +64,26 @@ describe('deviceDetector', () => {
       const result = DeviceDetector.detect()
 
       expect(result.isHarmonyOS).toBe(true)
-      expect(result.isMobile).toBe(false) // HarmonyOS is not detected as mobile by the current regex
+    })
+
+    it('非纯血鸿蒙', () => {
+      mockNavigator.userAgent = 'Mozilla/5.0 (Linux; Android 12; HarmonyOS; JAD-AL50; HMSCore 6.15.4.342) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.196 HuaweiBrowser/17.0.3.302 Mobile Safari/537.36'
+
+      const result = DeviceDetector.detect()
+
+      expect(result.isHarmonyOS).toBe(true)
+      expect(result.isPureHarmonyOS).toBe(false)
+      expect(result.isAndroid).toBe(true)
+    })
+
+    it('纯血鸿蒙', () => {
+      mockNavigator.userAgent = 'Mozilla/5.0 (Phone; OpenHarmony 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 ArkWeb/4.1.6.1 Mobile HuaweiBrowser/5.0.6.350'
+
+      const result = DeviceDetector.detect()
+
+      expect(result.isHarmonyOS).toBe(true)
+      expect(result.isPureHarmonyOS).toBe(true)
+      expect(result.isAndroid).toBe(false)
     })
 
     it('should detect WeChat correctly', () => {
